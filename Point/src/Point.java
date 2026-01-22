@@ -33,8 +33,8 @@ public class Point {
 
     // Behaviors
     public void seDeplacer(double _newX, double _newY) {
-        this.x = _newX;
-        this.y = _newY;
+        this.x += _newX;
+        this.y += _newY;
     }
 
     public Point symAbcisse() {
@@ -58,8 +58,14 @@ public class Point {
         this.setY(temp);
     }
 
+    public double calculSegment(Point _autrePoint){
+        double res = Math.pow((_autrePoint.getX()-this.x),2)+ Math.pow((_autrePoint.getY()-this.y), 2);
+        // res = Math.sqrt(res);
+        return res;
+    }
+
     public String toString() {
-        return "Ce point a pour coordonnees\n" + x + " en abcisse\n" + y + " en ordonnée";
+        return "Ce point a pour coordonnées\n" + this.x + " en abcisse\n" + this.y + " en ordonnée";
     }
 
 }
