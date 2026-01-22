@@ -59,7 +59,7 @@ public class Point {
     }
 
     public String toString() {
-        return "Ce point a pour coordonnees\n" + this.x + " en abcisse\n" + this.y + " en ordonnée";
+        return "Ce point a pour coordonnees\n" + x + " en abcisse\n" + y + " en ordonnée";
     }
 
 }
