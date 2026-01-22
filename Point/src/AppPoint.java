@@ -20,7 +20,7 @@ public class AppPoint {
         entree.nextLine();
         unPoint.setX(x);
         unPoint.setY(y);
-        System.out.println("Présentation à deux phases :\nAvec getX et getY "+unPoint.getX()+" en abcisse et "+ unPoint.getY() +" en ordonnee puis (toString)\n"+  unPoint.toString());
+        System.out.println("Présentation à deux phases :\nAvec getX et getY "+unPoint.getX()+" en abcisse et "+ unPoint.getY() +" en ordonnee puis (toString)\n"+  unPoint);
 
         //test comportements
         System.out.println("Ou souhaitez vous déplacer votre point ? (abcisse puis ordonnee)");
@@ -29,23 +29,23 @@ public class AppPoint {
         entree.close();
 
         unPoint.seDeplacer(x, y);
-        System.out.println("Test de la fonction \"se déplacer\" :\n"+unPoint.toString());
+        System.out.println("Test de la fonction \"se déplacer\" :\n"+unPoint);
         System.out.println("------------");
 
         Point symX = unPoint.symAbcisse();
-        System.out.println("Symétrie axiale à l'abcisse :\n" + symX.toString());
+        System.out.println("Symétrie axiale à l'abcisse :\n" + symX);
         System.out.println("------------");
 
         Point symY = unPoint.symOrdonnee();
-        System.out.println("Symétrie axiale à l'ordonnee :\n" + symY.toString());
+        System.out.println("Symétrie axiale à l'ordonnee :\n" + symY);
         System.out.println("------------");
 
         Point symCent = unPoint.symOrigine();
-        System.out.println("Symétrie centrale :\n" + symCent.toString());
+        System.out.println("Symétrie centrale :\n" + symCent);
         System.out.println("------------");
 
         unPoint.permuter();
-        System.out.println("Test de permutation :\n"+unPoint.toString());
+        System.out.println("Test de permutation :\n"+unPoint);
         System.out.println("------------\nProgramme terminé !");
 
 
