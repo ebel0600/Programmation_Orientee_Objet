@@ -14,7 +14,7 @@ public class AppPoint {
         //test setters / getters
         double x;
         double y;
-        System.out.println("Veuillez entrer les nouvelles coordonnées du point");
+        System.out.println("Veuillez entrer les coordonnées du point");
         x = entree.nextDouble();
         y = entree.nextDouble();
         entree.nextLine();
