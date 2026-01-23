@@ -44,13 +44,12 @@ public class AppPoint {
         System.out.println("Symétrie centrale :\n" + symCent);
         System.out.println("------------");
 
-        unPoint.permuter();
-        System.out.println("Test de permutation :\n"+unPoint);
-        System.out.println("------------");
+        // unPoint.permuter();
+        // System.out.println("Test de permutation :\n"+unPoint);
+        // System.out.println("------------");
 
         double res = symX.calculSegment(unPoint);
         System.out.println("La distance entre le point A et son symétrique à l'axe des abcisse est de "+res);
-
         System.out.println("------------\nProgramme terminé !");
 
 

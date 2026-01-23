@@ -59,8 +59,7 @@ public class Point {
     }
 
     public double calculSegment(Point _autrePoint){
-        double res = Math.pow((_autrePoint.getX()-this.x),2)+ Math.pow((_autrePoint.getY()-this.y), 2);
-        // res = Math.sqrt(res);
+        double res = Math.sqrt(Math.pow((_autrePoint.getX()-this.x),2)+ Math.pow((_autrePoint.getY()-this.y), 2));
         return res;
     }
 
