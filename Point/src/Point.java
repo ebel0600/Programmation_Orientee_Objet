@@ -53,9 +53,9 @@ public class Point {
     }
 
     public void permuter() {
-        double temp = this.getX();
-        this.setX(this.getY());
-        this.setY(temp);
+        double temp = x;
+        setX(this.getY());
+        setY(temp);
     }
 
     public double calculSegment(Point _autrePoint){
@@ -63,6 +63,7 @@ public class Point {
         return res;
     }
 
+    @Override
     public String toString() {
         return "Ce point a pour coordonnées\n" + this.x + " en abcisse\n" + this.y + " en ordonnée";
     }
