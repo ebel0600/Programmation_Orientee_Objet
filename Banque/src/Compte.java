@@ -1,5 +1,5 @@
 
-import java.util.Random;
+import java.time.LocalDateTime;
 
 
 /**
@@ -22,16 +22,16 @@ public class Compte {
 	 */
 	public Compte(String _nomProp, double _solde, double _decouvert) {
 
-		Random rand = new Random();
-		NUMID = rand.nextLong(System.currentTimeMillis());
+		LocalDateTime maintenant= LocalDateTime.now();
+		NUMID = Math.abs(maintenant.hashCode());
 		NOMPROPRIO = _nomProp;
 		solde = _solde;
 		decouvert = _decouvert;
 	}
 
 	public Compte() {
-		Random rand = new Random();
-		NUMID = rand.nextLong(System.currentTimeMillis());
+		LocalDateTime maintenant= LocalDateTime.now();
+		NUMID = Math.abs(maintenant.hashCode());
 		NOMPROPRIO = "Anonyme";
 		solde = 0;
 		decouvert = -100;
