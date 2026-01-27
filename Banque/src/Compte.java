@@ -1,4 +1,6 @@
-import java.util.UUID;
+
+import java.util.Random;
+
 
 /**
  * @version 1.0
@@ -8,7 +10,7 @@ public class Compte {
 
 	private double decouvert;
 	private final String NOMPROPRIO;
-	private final String NUMID;
+	private final long NUMID;
 	private double solde;
 
 	/**
@@ -19,14 +21,17 @@ public class Compte {
 	 * @param _decouvert
 	 */
 	public Compte(String _nomProp, double _solde, double _decouvert) {
-		NUMID = UUID.randomUUID().toString().substring(0, 8);
+
+		Random rand = new Random();
+		NUMID = rand.nextLong(System.currentTimeMillis());
 		NOMPROPRIO = _nomProp;
 		solde = _solde;
 		decouvert = _decouvert;
 	}
 
 	public Compte() {
-		NUMID = UUID.randomUUID().toString().substring(0,8);
+		Random rand = new Random();
+		NUMID = rand.nextLong(System.currentTimeMillis());
 		NOMPROPRIO = "Anonyme";
 		solde = 0;
 		decouvert = -100;
@@ -40,7 +45,7 @@ public class Compte {
 		return NOMPROPRIO;
 	}
 
-	public String getNUMID() {
+	public long getNUMID() {
 		return NUMID;
 	}
 

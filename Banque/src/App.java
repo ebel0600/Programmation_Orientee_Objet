@@ -9,7 +9,7 @@ public class App {
         double découvert;
         double montant;
         
-        System.out.println("Le nom du bénéficiaire :");
+        System.out.println("Quel est le nom du bénéficiaire :");
         nom = entree.nextLine();
         System.out.println("Solde du compte :");
         solde = entree.nextDouble();
@@ -52,8 +52,7 @@ public class App {
         if(unCompte.transferer(montant, autreCompte))
             System.out.println(unCompte+""+autreCompte);
         else
-            System.out.println("Débit impossible : le découvert autorisé est dépassé pour "+unCompte.getNOMPROPRIO()+"  !");
-    
+            System.out.println("Débit impossible : le découvert autorisé est dépassé pour "+unCompte.getNOMPROPRIO()+"  !");    
         entree.close();
 
         System.out.println("Programme terminé !");
