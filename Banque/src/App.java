@@ -66,7 +66,7 @@ public class App {
         Compte_Epargne Epargne = new Compte_Epargne("Meyer", 0, 1.5);
         double[] quinzaines = new double[24];
         // System.out.println("Veuillez renseigner vos montants à la quinzaine de chaque mois");
-        Epargne.crediter(22950);
+        Epargne.crediter(3000);
         for (int i = 0; i < quinzaines.length; i++) {
             // if(i>=15)
             // Epargne.setTaux(2.5);
