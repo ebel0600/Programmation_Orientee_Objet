@@ -22,15 +22,14 @@ public class Compte_Epargne extends Compte {
     public void calculerInterets(double[] _tabMontants) {
         double res = 0;
         for (double d : _tabMontants) {
-            res += ((d * (this.taux / 100))/24);
+            res += ((d * (this.taux / 100)) / 24);
         }
         this.crediter(res);
     }
 
     @Override
     public String toString() {
-        return super.toString().substring(0, super.toString().length()-2) + ". Taux d'intérêt : " + taux + "%.";
+        return super.toString().substring(0, super.toString().length() - 2) + ". Taux d'intérêt : " + taux + "%.";
     }
 
-    
 }
