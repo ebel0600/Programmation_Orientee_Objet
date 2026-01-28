@@ -1,28 +1,27 @@
-
 import java.time.LocalDateTime;
-
 
 /**
  * @version 1.0
  * @created 26-janv.-2026 11:58:36
  */
+
 public class Compte {
 
 	private double decouvert;
-	private final String NOMPROPRIO;
-	private final long NUMID;
-	private double solde;
+	protected final String NOMPROPRIO;
+	protected final long NUMID;
+	protected double solde;
 
 	/**
 	 * 
-	 * @param _NUMID
+	 *
 	 * @param _nomProp
 	 * @param _solde
 	 * @param _decouvert
 	 */
 	public Compte(String _nomProp, double _solde, double _decouvert) {
 
-		LocalDateTime maintenant= LocalDateTime.now();
+		LocalDateTime maintenant = LocalDateTime.now();
 		NUMID = Math.abs(maintenant.hashCode());
 		NOMPROPRIO = _nomProp;
 		solde = _solde;
@@ -30,11 +29,11 @@ public class Compte {
 	}
 
 	public Compte() {
-		LocalDateTime maintenant= LocalDateTime.now();
+		LocalDateTime maintenant = LocalDateTime.now();
 		NUMID = Math.abs(maintenant.hashCode());
 		NOMPROPRIO = "Anonyme";
 		solde = 0;
-		decouvert = -100;
+		decouvert = 0;
 	}
 
 	public double getDecouvert() {
@@ -103,20 +102,24 @@ public class Compte {
 	 * @param _autreCompte
 	 */
 	public boolean transferer(double _montant, Compte _autreCompte) {
-		if(!this.debiter(_montant))
+		if (!this.debiter(_montant))
 			return false;
-		else{
+		else {
 			_autreCompte.crediter(_montant);
 			return true;
 		}
 	}
 
-        @Override
+	public static double arrondi(double nb, int nv) {
+
+        return (double) ((long) (nb * Math.pow(10, nv) + 0.5)) / Math.pow(10, nv);
+
+    }
+
+	@Override
 	public String toString() {
-		return "Le compte numéro " + NUMID + " au nom de " + NOMPROPRIO + " a un solde de " + solde
+		return "Le compte numéro " + NUMID + " au nom de " + NOMPROPRIO + " a un solde de " + arrondi(solde,2)
 				+ " euros et un découvert autorisé de " + decouvert + " euros\n";
 	}
-
-	
 
 }
