@@ -1,14 +1,14 @@
 
-import java.util.Random;
+//import java.util.Random;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner entree = new Scanner(System.in);
-        String nom;
-        double solde;
-        double découvert;
-        double montant;
+        // String nom;
+        // double solde;
+        // double découvert;
+        // double montant;
         
         // System.out.println("Quel est le nom du bénéficiaire :");
         // nom = entree.nextLine();
@@ -60,15 +60,18 @@ public class App {
         Compte_Epargne Lucie = new Compte_Epargne("Meyer", 0,1.5 );
         System.out.println(Lucie);
         double[] quinzaines = new double [24];
-        Random rand = new Random();
+        // Random rand = new Random();
         System.out.println("Veuillez renseigner vos montants à la quinzaine de chaque mois");
+        Lucie.crediter(100);
         for (int i = 0; i<quinzaines.length;i++){
 
-            quinzaines[i] = 100; //Compte.arrondi(rand.nextDouble(0, 22950),2);
-           // System.out.println("Quinzaine numero "+(i+1)+" : "+quinzaines[i]);
+            Lucie.crediter(50);
+            quinzaines[i] = Lucie.getSolde();
+            System.out.println("Quinzaine numero "+(i+1)+" : "+quinzaines[i]);
         }
         Lucie.calculerInterets(quinzaines);
-        System.out.println("Valeur théorique d'intérêt perçus sur le livret A à 100e la quinzaine:\n"+ Lucie);
+
+        System.out.println("Valeur théorique d'intérêt perçus sur le livret A à 100e + 50 supplémentaires par quinzaine consécutivement :\n"+ Lucie);
         entree.close();
 
         System.out.println("Programme terminé !");
