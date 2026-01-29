@@ -27,6 +27,30 @@ public class Banque {
         this.Comptes.add(_Compte);
     }
 
+    public void addCompte(String _nom, double _solde, double _decouvert){
+        Compte _Compte = new Compte(_nom,_solde,_decouvert);
+        this.Comptes.add(_Compte);
+    }
+
+    public Compte compteSup(){
+        Compte res= new Compte();
+        for (Compte compte : Comptes) {
+            if(compte.getSolde()>res.getSolde()){
+                res = compte;
+            }
+        }
+        return res;
+    }
+
+    public Compte rendCompte(long _num){
+        for (Compte compte : Comptes) {
+            if(_num == compte.getNUMID()){
+                return compte;
+            }
+        }
+        return null;
+    }
+
     public void removeCompte(Compte _Compte){
         for (Compte compte : Comptes) {
             if(compte.getNUMID()==_Compte.getNUMID())
@@ -35,6 +59,17 @@ public class Banque {
                 break;
             }
         }
+    }
+    
+    public boolean transferer(long _numCompte, long _numAutreCompte, double _montant){
+        for (Compte compte : Comptes) {
+            if(_numCompte==compte.getNUMID())
+                for (Compte compte2 : Comptes) {
+                    if(_numAutreCompte==compte2.getNUMID())
+                        return compte.transferer(_montant, compte2);
+                }
+        }
+        return false;
     }
 
     @Override

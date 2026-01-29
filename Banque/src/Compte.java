@@ -118,8 +118,8 @@ public class Compte {
 
 	@Override
 	public String toString() {
-		return "Le compte numéro " + NUMID + " au nom de " + NOMPROPRIO + " a un solde de " + arrondi(solde,2)
-				+ " euros et un découvert autorisé de " + decouvert + " euros\n";
+		return "Compte numéro " + NUMID + " au nom de " + NOMPROPRIO + ", solde de " + arrondi(solde,2)
+				+ " euros et découvert autorisé de " + decouvert + " euros\n";
 	}
 
 }
