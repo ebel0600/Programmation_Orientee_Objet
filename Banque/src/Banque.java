@@ -32,6 +32,19 @@ public class Banque {
         this.Comptes.add(_Compte);
     }
 
+    public boolean setCompte(long _num, String _nomProp, double _solde, double _decouvert){
+        for (Compte compte : Comptes) {
+            if(_num == compte.getNUMID()){
+                if(compte.setnomProprietaire(_nomProp)){
+                    compte.setSolde(_solde);
+                    compte.setDecouvert(_decouvert);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public Compte compteSup(){
         Compte res= new Compte();
         for (Compte compte : Comptes) {

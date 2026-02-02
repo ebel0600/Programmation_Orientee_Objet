@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.Random;
 
 /**
  * @version 1.0
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 public class Compte {
 
 	private double decouvert;
-	protected final String NOMPROPRIO;
+	protected String nomProprio;
 	protected final long NUMID;
 	protected double solde;
 
@@ -22,16 +23,18 @@ public class Compte {
 	public Compte(String _nomProp, double _solde, double _decouvert) {
 
 		LocalDateTime maintenant = LocalDateTime.now();
-		NUMID = Math.abs(maintenant.hashCode());
-		NOMPROPRIO = _nomProp;
+		Random rand = new Random();
+		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000));
+		nomProprio = _nomProp;
 		solde = _solde;
 		decouvert = _decouvert;
 	}
 
 	public Compte() {
 		LocalDateTime maintenant = LocalDateTime.now();
-		NUMID = Math.abs(maintenant.hashCode());
-		NOMPROPRIO = "Anonyme";
+		Random rand = new Random();
+		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000));
+		nomProprio = "Anonyme";
 		solde = 0;
 		decouvert = 0;
 	}
@@ -40,8 +43,8 @@ public class Compte {
 		return decouvert;
 	}
 
-	public String getNOMPROPRIO() {
-		return NOMPROPRIO;
+	public String getnomProprio() {
+		return nomProprio;
 	}
 
 	public long getNUMID() {
@@ -67,6 +70,16 @@ public class Compte {
 	public void setSolde(double newVal) {
 		solde = newVal;
 	}
+
+	public boolean setnomProprietaire(String _nouvNom) {
+        if (this.nomProprio.equals("Anonyme")) {
+
+            this.nomProprio = _nouvNom;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	/**
 	 * 
@@ -118,7 +131,7 @@ public class Compte {
 
 	@Override
 	public String toString() {
-		return "Compte numéro " + NUMID + " au nom de " + NOMPROPRIO + ", solde de " + arrondi(solde,2)
+		return "Compte numéro " + NUMID + " au nom de " + nomProprio + ", solde de " + arrondi(solde,2)
 				+ " euros et découvert autorisé de " + decouvert + " euros\n";
 	}
 
