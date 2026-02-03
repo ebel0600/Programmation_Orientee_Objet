@@ -103,15 +103,14 @@ public class App {
         entree.nextLine();
         long num1 = uneBanque.compteSup().getNUMID();
         long num2 = uneBanque.compteInf().getNUMID();
-        if(uneBanque.transferer(uneBanque.compteSup().getNUMID(), uneBanque.compteInf().getNUMID(), 500))
-            System.out.println("Oui !\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
-
+        if(uneBanque.transferer(uneBanque.compteSup().getNUMID(), uneBanque.compteInf().getNUMID(), montant))
+            System.out.println("Opération réussie\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
         else
-            System.out.println("Raté ! solde insuffisant\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
+            System.out.println("Opération annulée, solde insuffisant\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
 
         System.out.println("--------------------");
 
-        //test compteSup
+        //test compteSup/inf
         System.out.print("Qui est le plus fortuné de "+uneBanque.getNomBanque()+" ?\n"+uneBanque.compteSup().toString());
         System.out.print("Qui est le plus précaire de "+uneBanque.getNomBanque()+" ?\n"+uneBanque.compteInf().toString());
         System.out.println("--------------------");
@@ -128,7 +127,6 @@ public class App {
             System.out.println("Non, ce compte est sécurisé.");
         System.out.println("--------------------");
 
-        
         System.out.println("Peut-on modifier le compte vierge ?");
         if(uneBanque.setCompte(compteVierge.getNUMID(), "Juliette", 1000, -200))
             System.out.println("Opération réussie :\n"+compteVierge);
