@@ -24,7 +24,7 @@ public class Compte {
 
 		LocalDateTime maintenant = LocalDateTime.now();
 		Random rand = new Random();
-		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000));
+		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000000));
 		nomProprio = _nomProp;
 		solde = _solde;
 		decouvert = _decouvert;
@@ -33,7 +33,7 @@ public class Compte {
 	public Compte() {
 		LocalDateTime maintenant = LocalDateTime.now();
 		Random rand = new Random();
-		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000));
+		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000000));
 		nomProprio = "Anonyme";
 		solde = 0;
 		decouvert = 0;

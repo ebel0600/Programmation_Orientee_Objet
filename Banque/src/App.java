@@ -8,7 +8,7 @@ public class App {
         // String nom;
         // double solde;
         // double découvert;
-        // double montant;
+        double montant;
 
         // System.out.println("Quel est le nom du bénéficiaire :");
         // nom = entree.nextLine();
@@ -80,41 +80,57 @@ public class App {
 
         // System.out.println(Epargne);
 
-        //test banque
-        Banque postale = new Banque("La Banque Postale");
-        Compte autreCompte = new Compte("Basile", 1300, -200);
-        postale.addCompte(autreCompte);
-        Compte autreCompte2 = new Compte("Cecile", 2700, -500);
-        postale.addCompte(autreCompte2);
-        postale.addCompte("Aurélien", 1800, -300);
-        postale.addCompte("John",1984,-666);
-        System.out.println(postale);
-        System.out.println("Cecile peut elle transférer 500e à Basile ?");
-        if(postale.transferer(autreCompte2.getNUMID(), autreCompte.getNUMID(), 500))
-            System.out.println("Oui !");
+        //tests banque
+
+        //Initialisation des comptes
+        // Banque uneBanque = new Banque("La Banque uneBanque");
+        // Compte autreCompte = new Compte("Basile", 1300, -200);
+        // uneBanque.addCompte(autreCompte);
+        // Compte autreCompte2 = new Compte("Cecile", 2700, -500);
+        // uneBanque.addCompte(autreCompte2);
+        // uneBanque.addCompte("Aurélien", 1800, -300);
+        // uneBanque.addCompte("John",1984,-666);
+        // System.out.println(uneBanque);
+
+        Banque uneBanque = new Banque();
+        uneBanque.initaliser();
+        System.out.println(uneBanque);
+
+        //test transfert
+
+        System.out.println("Combien souhaitez vous transférer du compte le plus fortuné au plus précaire ?");
+        montant = entree.nextDouble();
+        entree.nextLine();
+        long num1 = uneBanque.compteSup().getNUMID();
+        long num2 = uneBanque.compteInf().getNUMID();
+        if(uneBanque.transferer(uneBanque.compteSup().getNUMID(), uneBanque.compteInf().getNUMID(), 500))
+            System.out.println("Oui !\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
+
         else
-            System.out.println("Raté !");
+            System.out.println("Raté ! solde insuffisant\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
+
         System.out.println("--------------------");
-        System.out.println("Basile peut-il transférer 3000e à Cécile ?");
-        if(postale.transferer(autreCompte.getNUMID(), autreCompte2.getNUMID(), 3000))
-            System.out.println("Oui mais ce n'était pas prévu pour être possible !");
-        else
-            System.out.println("Non, Basile n'a pas assez de monnaie.");
+
+        //test compteSup
+        System.out.print("Qui est le plus fortuné de "+uneBanque.getNomBanque()+" ?\n"+uneBanque.compteSup().toString());
+        System.out.print("Qui est le plus précaire de "+uneBanque.getNomBanque()+" ?\n"+uneBanque.compteInf().toString());
         System.out.println("--------------------");
-        System.out.print("Qui est le plus fortuné de "+postale.getNomBanque()+" ?\n"+postale.compteSup().toString());
-        System.out.println("--------------------");
+
+        //test setCompte
         Compte compteVierge = new Compte();
-        postale.addCompte(compteVierge);
+        uneBanque.addCompte(compteVierge);
 
         System.out.println("Voici un compte vierge :\n"+compteVierge.toString()+"Peut-on modifier celui du plus fortuné ?");
-        long numVole = postale.compteSup().getNUMID();
-        if(postale.setCompte(postale.compteSup().getNUMID(), "Charlatan", 0, 0))
-            System.out.println("Sécurité du système défaillante, il s'est fait dépouiller par "+postale.rendCompte(numVole).toString());
+        long numVole = uneBanque.compteSup().getNUMID();
+        if(uneBanque.setCompte(uneBanque.compteSup().getNUMID(), "Charlatan", 0, 0))
+            System.out.println("Sécurité du système défaillante, iel s'est fait dépouiller par "+uneBanque.rendCompte(numVole).toString());
         else 
             System.out.println("Non, ce compte est sécurisé.");
         System.out.println("--------------------");
+
+        
         System.out.println("Peut-on modifier le compte vierge ?");
-        if(postale.setCompte(compteVierge.getNUMID(), "Juliette", 1000, -200))
+        if(uneBanque.setCompte(compteVierge.getNUMID(), "Juliette", 1000, -200))
             System.out.println("Opération réussie :\n"+compteVierge);
         else
             System.out.println("Echec, revoir le code de setCompte.");

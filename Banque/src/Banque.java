@@ -10,6 +10,22 @@ public class Banque {
         this.Comptes = new ArrayList<>();
     }
 
+    public void initaliser(){
+        this.setNomBanque("Crédit Agricole");
+        Compte c1 = new Compte("toto", 1000, -500);
+        Compte c2 = new Compte("titi", 2000, -1000);
+        Compte c3 = new Compte("dupond",1500, -1500);
+        Compte c4 = new Compte("durand",1200, -500);
+        Compte c5 = new Compte("dubois", -200, -500);
+        Compte c6 = new Compte("duval", 750, -2000);
+        this.addCompte(c1);
+        this.addCompte(c2);
+        this.addCompte(c3);
+        this.addCompte(c4);
+        this.addCompte(c5);
+        this.addCompte(c6);
+    }
+    
     public Banque(){
         this.nomBanque = "Anonyme";
         this.Comptes = new ArrayList<>();
@@ -46,13 +62,23 @@ public class Banque {
     }
 
     public Compte compteSup(){
-        Compte res= new Compte();
-        for (Compte compte : Comptes) {
-            if(compte.getSolde()>res.getSolde()){
-                res = compte;
+        Compte compteMax= Comptes.get(0);
+        for (int i = 0; i<Comptes.size();i++) {
+            if(compteMax.getSolde()<Comptes.get(i).getSolde()){
+                compteMax = Comptes.get(i);
             }
         }
-        return res;
+        return compteMax;
+    }
+
+    public Compte compteInf(){
+        Compte compteMin= Comptes.get(0);
+        for (int i = 0; i<Comptes.size();i++) {
+            if(compteMin.getSolde()>Comptes.get(i).getSolde()){
+                compteMin = Comptes.get(i);
+            }
+        }
+        return compteMin;
     }
 
     public Compte rendCompte(long _num){
@@ -64,14 +90,15 @@ public class Banque {
         return null;
     }
 
-    public void removeCompte(Compte _Compte){
+    public boolean removeCompte(long _num){
         for (Compte compte : Comptes) {
-            if(compte.getNUMID()==_Compte.getNUMID())
+            if(compte.getNUMID()==_num && compte.getSolde()==0)
             {
                 Comptes.remove(compte);
-                break;
+                return true;
             }
         }
+        return false;
     }
     
     public boolean transferer(long _numCompte, long _numAutreCompte, double _montant){
@@ -89,7 +116,7 @@ public class Banque {
     public String toString(){
         String res = "Bienvenue à la banque "+nomBanque+"\n";
         for (Compte compte : Comptes) {
-            res+=compte.toString();
+            res+=compte.toString().substring(0,18)+"***** "+compte.toString().substring(31, 36)+"****\n";
         }
         return res;
     }
