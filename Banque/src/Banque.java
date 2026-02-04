@@ -4,6 +4,7 @@ import java.util.List;
 public class Banque {
     private String nomBanque;
     private List<Compte> Comptes;
+    private Integer position;
 
     public Banque(String _nomBanque){
         this.nomBanque = _nomBanque;
@@ -33,6 +34,10 @@ public class Banque {
 
     public String getNomBanque(){
         return nomBanque;
+    }
+
+    public Integer getPosition(){
+        return this.position;
     }
 
     public void setNomBanque(String _nom){
@@ -81,9 +86,11 @@ public class Banque {
         return compteMin;
     }
 
-    public Compte rendCompte(long _num){
+    public Compte rendCompte(long _num ){// Integer _position){
         for (Compte compte : Comptes) {
             if(_num == compte.getNUMID()){
+                //this.position =Comptes.indexOf(compte);
+                //_position = this.position;
                 return compte;
             }
         }
@@ -116,7 +123,7 @@ public class Banque {
     public String toString(){
         String res = "Bienvenue à la banque "+nomBanque+"\n";
         for (Compte compte : Comptes) {
-            res+=compte.toString().substring(0,18)+"***** "+compte.toString().substring(31, 36)+"****\n";
+            res+=compte.toString();//.substring(0,18)+"***** "+compte.toString().substring(31, 36)+"****\n";
         }
         return res;
     }

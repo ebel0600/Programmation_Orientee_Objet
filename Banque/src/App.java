@@ -83,7 +83,7 @@ public class App {
         //tests banque
 
         //Initialisation des comptes
-        // Banque uneBanque = new Banque("La Banque uneBanque");
+        // Banque uneBanque = new Banque("La Banque Postale");
         // Compte autreCompte = new Compte("Basile", 1300, -200);
         // uneBanque.addCompte(autreCompte);
         // Compte autreCompte2 = new Compte("Cecile", 2700, -500);
@@ -96,17 +96,26 @@ public class App {
         uneBanque.initaliser();
         System.out.println(uneBanque);
 
+        // test rendcompte
+       // Integer position = 0;
+        System.out.println("Veuillez saisir le numéro de compte :");
+        long num = entree.nextLong();
+        //System.out.println(uneBanque.rendCompte(num, position) + " Trouvé en position "+ position+" "+ uneBanque.getPosition());
+
+
         //test transfert
 
-        System.out.println("Combien souhaitez vous transférer du compte le plus fortuné au plus précaire ?");
+        System.out.println("Combien souhaitez vous transférer ?");
         montant = entree.nextDouble();
         entree.nextLine();
-        long num1 = uneBanque.compteSup().getNUMID();
-        long num2 = uneBanque.compteInf().getNUMID();
-        if(uneBanque.transferer(uneBanque.compteSup().getNUMID(), uneBanque.compteInf().getNUMID(), montant))
-            System.out.println("Opération réussie\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
+        System.err.println("Indiquez les comptes concernés par l'opération (débiteur puis bénéficiaire)");
+        long numDebit = entree.nextLong();
+        long numCredit = entree.nextLong();
+        
+        if(uneBanque.transferer(numDebit, numCredit, montant))
+            System.out.println("Opération réussie\n"+uneBanque.rendCompte(numDebit)+uneBanque.rendCompte(numCredit));
         else
-            System.out.println("Opération annulée, solde insuffisant\n"+uneBanque.rendCompte(num1)+uneBanque.rendCompte(num2));
+            System.out.println("Opération annulée, solde insuffisant ou numero(s) de compte invalide(s)\n"+uneBanque.rendCompte(numDebit)+uneBanque.rendCompte(numCredit));
 
         System.out.println("--------------------");
 
