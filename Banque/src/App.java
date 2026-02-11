@@ -97,9 +97,9 @@ public class App {
         System.out.println(uneBanque);
 
         // test rendcompte
-       // Integer position = 0;
-        System.out.println("Veuillez saisir le numéro de compte :");
-        long num = entree.nextLong();
+        // Integer position = 0;
+        // System.out.println("Veuillez saisir le numéro de compte :");
+        // long num = entree.nextLong();
         //System.out.println(uneBanque.rendCompte(num, position) + " Trouvé en position "+ position+" "+ uneBanque.getPosition());
 
 

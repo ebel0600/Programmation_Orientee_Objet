@@ -6,17 +6,17 @@ public class Banque {
     private List<Compte> Comptes;
     private Integer position;
 
-    public Banque(String _nomBanque){
+    public Banque(String _nomBanque) {
         this.nomBanque = _nomBanque;
         this.Comptes = new ArrayList<>();
     }
 
-    public void initaliser(){
+    public void initaliser() {
         this.setNomBanque("Crédit Agricole");
         Compte c1 = new Compte("toto", 1000, -500);
         Compte c2 = new Compte("titi", 2000, -1000);
-        Compte c3 = new Compte("dupond",1500, -1500);
-        Compte c4 = new Compte("durand",1200, -500);
+        Compte c3 = new Compte("dupond", 1500, -1500);
+        Compte c4 = new Compte("durand", 1200, -500);
         Compte c5 = new Compte("dubois", -200, -500);
         Compte c6 = new Compte("duval", 750, -2000);
         this.addCompte(c1);
@@ -26,37 +26,37 @@ public class Banque {
         this.addCompte(c5);
         this.addCompte(c6);
     }
-    
-    public Banque(){
+
+    public Banque() {
         this.nomBanque = "Anonyme";
         this.Comptes = new ArrayList<>();
     }
 
-    public String getNomBanque(){
+    public String getNomBanque() {
         return nomBanque;
     }
 
-    public Integer getPosition(){
+    public Integer getPosition() {
         return this.position;
     }
 
-    public void setNomBanque(String _nom){
+    public void setNomBanque(String _nom) {
         nomBanque = _nom;
     }
 
-    public void addCompte(Compte _Compte){
+    public void addCompte(Compte _Compte) {
         this.Comptes.add(_Compte);
     }
 
-    public void addCompte(String _nom, double _solde, double _decouvert){
-        Compte _Compte = new Compte(_nom,_solde,_decouvert);
+    public void addCompte(String _nom, double _solde, double _decouvert) {
+        Compte _Compte = new Compte(_nom, _solde, _decouvert);
         this.Comptes.add(_Compte);
     }
 
-    public boolean setCompte(long _num, String _nomProp, double _solde, double _decouvert){
+    public boolean setCompte(long _num, String _nomProp, double _solde, double _decouvert) {
         for (Compte compte : Comptes) {
-            if(_num == compte.getNUMID()){
-                if(compte.setnomProprietaire(_nomProp)){
+            if (_num == compte.getNUMID()) {
+                if (compte.setnomProprietaire(_nomProp)) {
                     compte.setSolde(_solde);
                     compte.setDecouvert(_decouvert);
                     return true;
@@ -66,67 +66,63 @@ public class Banque {
         return false;
     }
 
-    public Compte compteSup(){
-        Compte compteMax= Comptes.get(0);
-        for (int i = 0; i<Comptes.size();i++) {
-            if(compteMax.getSolde()<Comptes.get(i).getSolde()){
+    public Compte compteSup() {
+        Compte compteMax = Comptes.get(0);
+        for (int i = 0; i < Comptes.size(); i++) {
+            if (compteMax.getSolde() < Comptes.get(i).getSolde()) {
                 compteMax = Comptes.get(i);
             }
         }
         return compteMax;
     }
 
-    public Compte compteInf(){
-        Compte compteMin= Comptes.get(0);
-        for (int i = 0; i<Comptes.size();i++) {
-            if(compteMin.getSolde()>Comptes.get(i).getSolde()){
+    public Compte compteInf() {
+        Compte compteMin = Comptes.get(0);
+        for (int i = 0; i < Comptes.size(); i++) {
+            if (compteMin.getSolde() > Comptes.get(i).getSolde()) {
                 compteMin = Comptes.get(i);
             }
         }
         return compteMin;
     }
 
-    public Compte rendCompte(long _num ){// Integer _position){
+    public Compte rendCompte(long _num) {// , Integer _position){
         for (Compte compte : Comptes) {
-            if(_num == compte.getNUMID()){
-                //this.position =Comptes.indexOf(compte);
-                //_position = this.position;
+            if (_num == compte.getNUMID()) {
+                // this.position =Comptes.indexOf(compte);
+                // _position = this.position;
                 return compte;
             }
         }
         return null;
     }
 
-    public boolean removeCompte(long _num){
+    public boolean removeCompte(long _num) {
         for (Compte compte : Comptes) {
-            if(compte.getNUMID()==_num && compte.getSolde()==0)
-            {
+            if (compte.getNUMID() == _num && compte.getSolde() == 0) {
                 Comptes.remove(compte);
                 return true;
             }
         }
         return false;
     }
-    
-    public boolean transferer(long _numCompte, long _numAutreCompte, double _montant){
-        for (Compte compte : Comptes) {
-            if(_numCompte==compte.getNUMID())
-                for (Compte compte2 : Comptes) {
-                    if(_numAutreCompte==compte2.getNUMID())
-                        return compte.transferer(_montant, compte2);
-                }
-        }
-        return false;
+
+    public boolean transferer(long _numCompteDebit, long _numCompteCredit, double _montant) {
+        Compte Comptedebiteur = this.rendCompte(_numCompteDebit);
+        Compte CompteCrediteur = this.rendCompte(_numCompteCredit);
+        if (Comptedebiteur != null && CompteCrediteur != null)
+            return Comptedebiteur.transferer(_montant, CompteCrediteur);
+        else
+            return false;
     }
 
     @Override
-    public String toString(){
-        String res = "Bienvenue à la banque "+nomBanque+"\n";
+    public String toString() {
+        String res = "Bienvenue à la banque " + nomBanque + "\n";
         for (Compte compte : Comptes) {
-            res+=compte.toString();//.substring(0,18)+"***** "+compte.toString().substring(31, 36)+"****\n";
+            res += compte.toString();// .substring(0,18)+"***** "+compte.toString().substring(31, 36)+"****\n";
         }
         return res;
     }
-
 
 }
