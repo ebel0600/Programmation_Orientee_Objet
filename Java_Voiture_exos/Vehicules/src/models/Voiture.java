@@ -8,18 +8,26 @@ public class Voiture {
 
 	protected String marque;
 	protected String modele;
-	protected int poids = 1000;
-	public Moteur m_Moteur;
+	protected double poids = 1000;
+	protected Moteur moteur;
 
 	public Voiture(){
 		marque = "Inconnu";
 		modele = "";
-		m_Moteur = new Moteur();
-
 	}
 
-	public void finalize() throws Throwable {
 
+	public Voiture(String _marque, String _modele, double _poids){
+		marque = _marque;
+		modele = _modele;
+		poids = _poids;
+	}
+
+	public Voiture(String _marque, String _modele, double _poids, Moteur _moteur){
+		marque = _marque;
+		modele = _modele;
+		poids = _poids;
+		moteur = _moteur;
 	}
 
 	public String getmarque(){
@@ -30,15 +38,18 @@ public class Voiture {
 		return modele;
 	}
 
-	public int getpoids(){
+	public double getpoids(){
 		return poids;
 	}
 
+	public Moteur getMoteur(){
+		return moteur;
+	}
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setpoids(int newVal){
+	public void setpoids(double newVal){
 		poids = newVal;
 	}
 
@@ -58,8 +69,9 @@ public class Voiture {
 		marque = newVal;
 	}
 
+        @Override
 	public String toString(){
-		return "";
+		return marque + " " + modele + "," + poids + "kgs";
 	}
 
 	/**
@@ -67,8 +79,8 @@ public class Voiture {
 	 * @param poids
 	 * @param vitesseMoteur
 	 */
-	public double vitesseMax(int poids, int vitesseMoteur){
-		return 0;
+	public double vitesseMax(){
+		return this.moteur.getvitesseMax() - (this.poids * 10/100); // 10% contrairment au 30% irréalistes de la consigne
 	}
 
 }

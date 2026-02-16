@@ -7,14 +7,16 @@ package models;
 public class Moteur {
 
 	private String marque;
-	private int vitesseMax;
+	private double vitesseMax;
 
 	public Moteur(){
-
+		marque = "inconnu";
+		vitesseMax = 0;
 	}
 
-	public void finalize() throws Throwable {
-
+	public Moteur(String _marque, double _vitMax){
+		marque = _marque;
+		vitesseMax = _vitMax;
 	}
 
 	public String getmarque(){
@@ -29,7 +31,7 @@ public class Moteur {
 		marque = newVal;
 	}
 
-	public int getvitesseMax(){
+	public double getvitesseMax(){
 		return vitesseMax;
 	}
 
@@ -37,7 +39,7 @@ public class Moteur {
 	 * 
 	 * @param newVal
 	 */
-	public void setvitesseMax(int newVal){
+	public void setvitesseMax(double newVal){
 		vitesseMax = newVal;
 	}
 

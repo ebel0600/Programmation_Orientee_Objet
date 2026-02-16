@@ -6,12 +6,29 @@ package models;
  */
 public class VoitureDeCourse extends Voiture {
 
-	public VoitureDeCourse(){
-
+	public VoitureDeCourse(String _marque, String _modele, double _poids, Moteur _moteur) {
+		super(_marque, _modele, _poids);
+		try {
+			this.moteur = _moteur;
+			if (!moteur.getmarque().equals(this.marque)) {
+				throw new Exception("Incompatibilité entre le moteur et la voiture");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
+	public VoitureDeCourse(String _marque, String _modele, double _poids, String _marqueMoteur, double _vitesseMax) {
+		super(_marque, _modele, _poids);
+		Moteur _moteur = new Moteur(_marqueMoteur, _vitesseMax);
+		try {
+			this.moteur = _moteur;
+			if (!moteur.getmarque().equals(this.marque)) {
+				throw new Exception("Incompatibilité entre le moteur et la voiture");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -19,8 +36,13 @@ public class VoitureDeCourse extends Voiture {
 	 * @param poids
 	 * @param vitesseMoteur
 	 */
-	public double vitesseMax(int poids, int vitesseMoteur){
-		return 0;
+	@Override
+	public double vitesseMax() {
+		return this.moteur.getvitesseMax() - (this.poids * 5 / 100);
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + " vitesse max : " + this.vitesseMax();
+	}
 }
