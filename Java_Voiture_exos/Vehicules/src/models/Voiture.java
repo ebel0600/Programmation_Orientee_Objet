@@ -11,67 +11,59 @@ public class Voiture {
 	protected double poids = 1000;
 	protected Moteur moteur;
 
-	public Voiture(){
+	public Voiture() {
 		marque = "Inconnu";
 		modele = "";
 	}
 
-
-	public Voiture(String _marque, String _modele, double _poids){
+	public Voiture(String _marque, String _modele, double _poids) {
 		marque = _marque;
 		modele = _modele;
 		poids = _poids;
 	}
 
-	public Voiture(String _marque, String _modele, double _poids, Moteur _moteur){
+	public Voiture(String _marque, String _modele, double _poids, String _marqueMoteur, double _vitesseMax) {
 		marque = _marque;
 		modele = _modele;
 		poids = _poids;
-		moteur = _moteur;
+		moteur = new Moteur(_marqueMoteur, _vitesseMax);
 	}
 
-	public String getmarque(){
+	public String getmarque() {
 		return marque;
 	}
 
-	public String getmodele(){
+	public String getmodele() {
 		return modele;
 	}
 
-	public double getpoids(){
+	public double getpoids() {
 		return poids;
 	}
 
-	public Moteur getMoteur(){
+	public Moteur getMoteur() {
 		return moteur;
 	}
+
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setpoids(double newVal){
+	public void setpoids(double newVal) {
 		poids = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setmodele(String newVal){
-		modele = newVal;
+	public void setmoteur(String _nomMarque, double _vitesseMax){
+		moteur = new Moteur(_nomMarque, _vitesseMax);
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setmarque(String newVal){
-		marque = newVal;
+	public void setmoteur(Moteur _moteur){
+		moteur = _moteur;
 	}
 
-        @Override
-	public String toString(){
-		return marque + " " + modele + "," + poids + "kgs";
+	@Override
+	public String toString() {
+		return marque + " " + modele + ", " + poids + "kgs";
 	}
 
 	/**
@@ -79,8 +71,9 @@ public class Voiture {
 	 * @param poids
 	 * @param vitesseMoteur
 	 */
-	public double vitesseMax(){
-		return this.moteur.getvitesseMax() - (this.poids * 10/100); // 10% contrairment au 30% irréalistes de la consigne
+	public double vitesseMax() {
+		return this.moteur.getvitesseMax() - (this.poids * 10 / 100); // 10% contrairment au 30% irréalistes de la
+																		// consigne
 	}
 
 }

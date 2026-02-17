@@ -6,28 +6,10 @@ package models;
  */
 public class VoitureDeCourse extends Voiture {
 
-	public VoitureDeCourse(String _marque, String _modele, double _poids, Moteur _moteur) {
-		super(_marque, _modele, _poids);
-		try {
-			this.moteur = _moteur;
-			if (!moteur.getmarque().equals(this.marque)) {
-				throw new Exception("Incompatibilité entre le moteur et la voiture");
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
 	public VoitureDeCourse(String _marque, String _modele, double _poids, String _marqueMoteur, double _vitesseMax) {
-		super(_marque, _modele, _poids);
-		Moteur _moteur = new Moteur(_marqueMoteur, _vitesseMax);
-		try {
-			this.moteur = _moteur;
-			if (!moteur.getmarque().equals(this.marque)) {
-				throw new Exception("Incompatibilité entre le moteur et la voiture");
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		super(_marque, _modele, _poids, _marqueMoteur, _vitesseMax);
+		if (!_marqueMoteur.equals(this.marque)) {
+			throw new IllegalArgumentException("Incompatibilité entre le moteur et la voiture");
 		}
 	}
 
