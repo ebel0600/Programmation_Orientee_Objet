@@ -1,3 +1,4 @@
+package banque;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ import java.util.Random;
  * @created 26-janv.-2026 11:58:36
  */
 
-public class Compte {
+public class Compte implements Comparable<Compte>{
 
 	private double decouvert;
 	protected String nomProprio;
@@ -24,7 +25,7 @@ public class Compte {
 
 		LocalDateTime maintenant = LocalDateTime.now();
 		Random rand = new Random();
-		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000000));
+		NUMID = Math.abs(maintenant.hashCode() + rand.nextLong(10000000));
 		nomProprio = _nomProp;
 		solde = _solde;
 		decouvert = _decouvert;
@@ -33,7 +34,7 @@ public class Compte {
 	public Compte() {
 		LocalDateTime maintenant = LocalDateTime.now();
 		Random rand = new Random();
-		NUMID = Math.abs(maintenant.hashCode()+rand.nextLong(10000000));
+		NUMID = Math.abs(maintenant.hashCode() + rand.nextLong(10000000));
 		nomProprio = "Anonyme";
 		solde = 0;
 		decouvert = 0;
@@ -72,14 +73,14 @@ public class Compte {
 	}
 
 	public boolean setnomProprietaire(String _nouvNom) {
-        if (this.nomProprio.equals("Anonyme")) {
+		if (this.nomProprio.equals("Anonyme")) {
 
-            this.nomProprio = _nouvNom;
-            return true;
-        } else {
-            return false;
-        }
-    }
+			this.nomProprio = _nouvNom;
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * 
@@ -125,14 +126,20 @@ public class Compte {
 
 	public static double arrondi(double nb, int nv) {
 
-        return (double) ((long) (nb * Math.pow(10, nv) + 0.5)) / Math.pow(10, nv);
+		return (double) ((long) (nb * Math.pow(10, nv) + 0.5)) / Math.pow(10, nv);
 
-    }
+	}
+
+	@Override
+	public int compareTo(Compte _autreCompte){
+		return Double.compare(this.solde, _autreCompte.getSolde());
+	}
 
 	@Override
 	public String toString() {
-		return "Compte numéro " + NUMID + " au nom de " + nomProprio + ", solde de " + arrondi(solde,2)
+		return "Compte numéro " + NUMID + " au nom de " + nomProprio + ", solde de " + arrondi(solde, 2)
 				+ " euros et découvert autorisé de " + decouvert + " euros\n";
 	}
-
 }
+
+

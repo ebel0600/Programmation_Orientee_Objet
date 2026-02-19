@@ -1,7 +1,9 @@
+package banque;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class Banque {
+public class Banque  {
     private String nomBanque;
     private List<Compte> Comptes;
     private Integer position;
@@ -114,6 +116,14 @@ public class Banque {
             return Comptedebiteur.transferer(_montant, CompteCrediteur);
         else
             return false;
+    }
+
+    public void triNoms(){
+        Comptes.sort(Comparator.comparing(Compte::getnomProprio));
+    }
+
+    public void triSolde(){
+        Comptes.sort(Comparator.comparing(Compte::getSolde));
     }
 
     @Override

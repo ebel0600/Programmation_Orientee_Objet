@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Statistiques {
     private ArrayList<Double> donnees = new ArrayList<>();
@@ -12,7 +13,11 @@ public class Statistiques {
 
     public void setDonnees(ArrayList<Double> _donnees) {
         donnees = _donnees;
-        Collections.sort(donnees);
+       // Collections.sort(donnees);
+        donnees.sort(Comparator.naturalOrder());
+        donnees.sort(Comparator.reverseOrder());
+        
+
     }
 
     public ArrayList<Double> getdonnees() {
