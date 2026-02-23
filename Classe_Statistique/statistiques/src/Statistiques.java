@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Statistiques {
     private ArrayList<Double> donnees = new ArrayList<>();
@@ -13,9 +12,9 @@ public class Statistiques {
 
     public void setDonnees(ArrayList<Double> _donnees) {
         donnees = _donnees;
-       // Collections.sort(donnees);
-        donnees.sort(Comparator.naturalOrder());
-        donnees.sort(Comparator.reverseOrder());
+        Collections.sort(donnees);
+        // donnees.sort(Comparator.naturalOrder());
+        // donnees.sort(Comparator.reverseOrder());
         
 
     }
@@ -73,7 +72,12 @@ public class Statistiques {
     }
 
     public double mediane() {
-        return donnees.get((donnees.size()+1) / 2);
+        int taille = donnees.size();
+        if(donnees.size()%2 == 0)
+            return(donnees.get(taille/2)+donnees.get((taille/2)-1))/2;
+        else
+            return donnees.get(taille/2);
+        //return donnees.get((donnees.size()+1) / 2);
     }
 
     @Override
