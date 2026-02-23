@@ -15,7 +15,6 @@ public class Statistiques {
         Collections.sort(donnees);
         // donnees.sort(Comparator.naturalOrder());
         // donnees.sort(Comparator.reverseOrder());
-        
 
     }
 
@@ -53,36 +52,33 @@ public class Statistiques {
         return resultat;
     }
 
-    public double quartile1() {
-        // double resultat = this.moyenne() - 0.674 * this.ecartType();
-        // resultat *=100;
-        // long conv = (long) resultat;
-        // resultat = conv;
-        // resultat /= 100;      
-        return donnees.get((donnees.size()+1) / 4);
-    }
+    public ArrayList<Double> quartiles() {
+        int nbelements = donnees.size();
+        ArrayList<Double> res = new ArrayList<>();
+        if (nbelements % 2 == 0) {
+            res.add((donnees.get(nbelements / 4) + donnees.get((nbelements / 4) - 1)) / 2);
+            res.add((donnees.get(nbelements / 2) + donnees.get((nbelements / 2) - 1)) / 2);
+            res.add((donnees.get(nbelements * 3 / 4) + donnees.get((nbelements * 3 / 4) - 1)) / 2);
+            return res;
+        }
 
-    public double quartile2() {
-        // double resultat = this.moyenne() + 0.674 * this.ecartType();
-        // resultat *=100;
-        // long conv = (long) resultat;
-        // resultat = conv;
-        // resultat /= 100;
-        return donnees.get((3*donnees.size() + 1) / 4);
+        res.add(donnees.get(nbelements / 4));
+        res.add(donnees.get(nbelements / 2));
+        res.add(donnees.get(nbelements * 3 / 4));
+        return res;
     }
 
     public double mediane() {
-        int taille = donnees.size();
-        if(donnees.size()%2 == 0)
-            return(donnees.get(taille/2)+donnees.get((taille/2)-1))/2;
+        int nbelements = donnees.size();
+        if (donnees.size() % 2 == 0)
+            return (donnees.get(nbelements / 2) + donnees.get((nbelements / 2) - 1)) / 2;
         else
-            return donnees.get(taille/2);
-        //return donnees.get((donnees.size()+1) / 2);
+            return donnees.get(nbelements / 2);
     }
 
     @Override
     public String toString() {
         return "Ce jeu de données a pour moyenne " + this.moyenne() + ", mediane " + this.mediane() + ", ecart-type "
-                + this.ecartType() + ", quartiles " + this.quartile1() + " et " + this.quartile2();
+                + this.ecartType() + ", quartiles " + this.quartiles().get(0) + " et " + this.quartiles().get(2);
     }
 }
