@@ -1,16 +1,18 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 
 public class Statistiques {
-    private ArrayList<Double> donnees = new ArrayList<>();
+    private List<Double> donnees = new ArrayList<Double>();
 
-    public Statistiques(ArrayList<Double> _donnees) {
+    public Statistiques(List<Double> _donnees) {
         donnees = _donnees;
         Collections.sort(donnees);
     }
 
-    public void setDonnees(ArrayList<Double> _donnees) {
+    public void setDonnees(List<Double> _donnees) {
         donnees = _donnees;
         Collections.sort(donnees);
         // donnees.sort(Comparator.naturalOrder());
@@ -18,7 +20,7 @@ public class Statistiques {
 
     }
 
-    public ArrayList<Double> getdonnees() {
+    public List<Double> getdonnees() {
         return this.donnees;
     }
 
@@ -53,20 +55,40 @@ public class Statistiques {
     }
 
     public ArrayList<Double> quartiles() {
-        int nbelements = donnees.size();
-        ArrayList<Double> res = new ArrayList<>();
-        if (nbelements % 2 == 0) {
-            res.add((donnees.get(nbelements / 4) + donnees.get((nbelements / 4) - 1)) / 2);
-            res.add((donnees.get(nbelements / 2) + donnees.get((nbelements / 2) - 1)) / 2);
-            res.add((donnees.get(nbelements * 3 / 4) + donnees.get((nbelements * 3 / 4) - 1)) / 2);
-            return res;
-        }
 
-        res.add(donnees.get(nbelements / 4));
-        res.add(donnees.get(nbelements / 2));
-        res.add(donnees.get(nbelements * 3 / 4));
+        int nbelements = this.donnees.size();
+        ArrayList<Double> res = new ArrayList<>();
+
+        //sous-tableaux
+        List<Double> tab1 = new ArrayList<Double>(); 
+        List<Double> tab2 = new ArrayList<Double>(); 
+
+        tab1 = this.donnees.subList(0, (nbelements/2)-1);
+        tab2 = this.donnees.subList(nbelements/2, nbelements);
+        
+        Statistiques subStat1 = new Statistiques(tab1);
+        Statistiques subStat2 = new Statistiques(tab2);
+        
+        //resultats
+        res.add(subStat1.mediane());
+        res.add(this.mediane());
+        res.add(subStat2.mediane());
+
         return res;
+
+        // if (nbelements % 4 == 0) {
+        //     res.add((donnees.get(nbelements / 4) + donnees.get((nbelements / 4) - 1)) / 2);
+        //     res.add((donnees.get(nbelements / 2) + donnees.get((nbelements / 2) - 1)) / 2);
+        //     res.add((donnees.get(nbelements * 3 / 4) + donnees.get((nbelements * 3 / 4) - 1)) / 2);
+        // }
+
+        // res.add(donnees.get(nbelements / 4));
+        // res.add(donnees.get(nbelements / 2));
+        // res.add(donnees.get(nbelements * 3 / 4));
+
+        //return res;
     }
+
 
     public double mediane() {
         int nbelements = donnees.size();
@@ -75,6 +97,7 @@ public class Statistiques {
         else
             return donnees.get(nbelements / 2);
     }
+
 
     @Override
     public String toString() {
