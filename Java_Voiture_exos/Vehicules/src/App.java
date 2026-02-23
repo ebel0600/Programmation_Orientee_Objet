@@ -1,6 +1,5 @@
 
 import java.util.Scanner;
-import models.Moteur;
 import models.Voiture;
 import models.VoitureDeCourse;
 
@@ -14,15 +13,13 @@ public class App {
         String mod = entree.nextLine();
         double pod = entree.nextDouble();
         entree.nextLine();
-        Voiture uneVoiture = new Voiture("Peugeot", "306", 1200);
-        Voiture taVoiture = new Voiture(nomVoit, mod, pod);
+        System.out.println("Caractéristiques du moteur :");
+        String marMot = entree.nextLine();
+        double maxVit = entree.nextDouble();
+        entree.nextLine();
+        Voiture uneVoiture = new Voiture("Peugeot", "306", 1200, "Peugeot", 300);
+        Voiture taVoiture = new Voiture(nomVoit, mod, pod, marMot, maxVit);
         System.out.println(uneVoiture + "\n" + taVoiture);
-        System.out.println("Paramétrez un moteur");
-        String nomMoteur = entree.nextLine();
-        double vitmax = entree.nextDouble();
-        taVoiture.setmoteur(nomMoteur, vitmax);
-        Moteur unMoteur = new Moteur("Yamaha", 240);
-        uneVoiture.setmoteur(unMoteur);
         System.out.println("----------------------");
 
         // vitMax

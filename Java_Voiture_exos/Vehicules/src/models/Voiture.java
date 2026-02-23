@@ -16,12 +16,6 @@ public class Voiture {
 		modele = "";
 	}
 
-	public Voiture(String _marque, String _modele, double _poids) {
-		marque = _marque;
-		modele = _modele;
-		poids = _poids;
-	}
-
 	public Voiture(String _marque, String _modele, double _poids, String _marqueMoteur, double _vitesseMax) {
 		marque = _marque;
 		modele = _modele;
