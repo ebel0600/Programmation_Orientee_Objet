@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class Statistiques {
-    private List<Double> donnees = new ArrayList<Double>();
+    private List<Double> donnees = new ArrayList<>();
 
     public Statistiques(List<Double> _donnees) {
         donnees = _donnees;
@@ -60,10 +60,10 @@ public class Statistiques {
         ArrayList<Double> res = new ArrayList<>();
 
         //sous-tableaux
-        List<Double> tab1 = new ArrayList<Double>(); 
-        List<Double> tab2 = new ArrayList<Double>(); 
+        List<Double> tab1 = new ArrayList<>(); 
+        List<Double> tab2 = new ArrayList<>(); 
 
-        tab1 = this.donnees.subList(0, (nbelements/2)-1);
+        tab1 = this.donnees.subList(0, nbelements/2);
         tab2 = this.donnees.subList(nbelements/2, nbelements);
         
         Statistiques subStat1 = new Statistiques(tab1);
@@ -89,13 +89,12 @@ public class Statistiques {
         //return res;
     }
 
-
     public double mediane() {
         int nbelements = donnees.size();
         if (donnees.size() % 2 == 0)
-            return (donnees.get(nbelements / 2) + donnees.get((nbelements / 2) - 1)) / 2;
+            return (donnees.get((nbelements / 2)-1) + donnees.get(nbelements / 2)) / 2;
         else
-            return donnees.get(nbelements / 2);
+            return donnees.get((nbelements+1 / 2)-1);
     }
 
 
