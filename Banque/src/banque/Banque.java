@@ -6,7 +6,7 @@ import java.util.List;
 public class Banque  {
     private String nomBanque;
     private List<Compte> Comptes;
-    private Integer position;
+    // private Integer position;
 
     public Banque(String _nomBanque) {
         this.nomBanque = _nomBanque;
